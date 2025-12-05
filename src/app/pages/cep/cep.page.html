@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Consulta de CEP</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label position="floating">Digite o CEP</ion-label>
+    <ion-input
+      type="tel"
+      [(ngModel)]="cep"
+      maxlength="9"
+      placeholder="00000-000"
+    ></ion-input>
+  </ion-item>
+
+  <ion-button
+    expand="block"
+    (click)="consultarCep()"
+    class="ion-margin-top"
+  >
+    Consultar Endereço
+  </ion-button>
+
+  <ion-card *ngIf="endereco">
+    <ion-card-header>
+      <ion-card-title>Endereço Encontrado</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label>Logradouro: {{ endereco.logradouro }}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Bairro: {{ endereco.bairro }}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label
+            >Cidade/UF: {{ endereco.localidade }} /
+            {{ endereco.uf }}</ion-label
+          >
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <div *ngIf="erro" class="ion-padding ion-text-center" style="color: red">
+    {{ erro }}
+  </div>
+</ion-content>
